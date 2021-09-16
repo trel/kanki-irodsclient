@@ -128,8 +128,9 @@ void RodsMainWindow::enterConnectedState()
         // if we can get current cipher info from OpenSSL
         if (cipher)
         {
-            statusMsg += "encryption method: " + std::string(cipher->name) + " - ";
-            statusMsg += "cipher strength: " + QVariant(cipher->strength_bits).toString().toStdString();
+            int* alg_bits{};
+            statusMsg += "encryption method: " + std::string(SSL_CIPHER_get_name(cipher)) + " - ";
+            statusMsg += "cipher strength: " + QVariant(SSL_CIPHER_get_bits(cipher,alg_bits)).toString().toStdString();
             statusMsg += " bits - ";
         }
 

@@ -309,7 +309,7 @@ int RodsSession::readColl(const std::string &collPath, std::vector<RodsObjEntryP
 					      entry.is_data_object() ? DATA_OBJ_T : COLL_OBJ_T,
 					      0,
 					      1,
-					      entry.is_data_object() ? const_cast<fs::collection_entry&>(entry).data_object_size() : 0));
+					      entry.is_data_object() ? entry.data_size() : 0));
 
 	    // TODO: fix with emplace_back!
 	    collObjs->push_back(newEntry);
